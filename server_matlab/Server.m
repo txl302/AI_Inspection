@@ -2,23 +2,19 @@ clc
 clear all
 close all
 
-a = dir('train/0/');
+capture = 10;
 
-C:\Users\txl30\Desktop\astra_image
+u_server = udp('127.0.0.1','RemotePort', 4012, 'LocalPort', 8012);
 
-I = imread(strcat('train/0/', a(3).name));
 
-didb.images.data = [];
-didb.images.label = [];
-didb.images.set = [];
+fopen(u_server)
 
 while 1
-    
-    a = dir('C:\Users\txl30\Desktop\astra_image')
-    
+
+B = fread(u_server,10)
+
+fwrite(u_server,capture)
+
 end
 
-
-for i = 1:n
-    
-end
+fclose(u_server)
