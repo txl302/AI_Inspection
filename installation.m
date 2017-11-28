@@ -6,7 +6,8 @@ if ~exist('D:\Midea_AI_Inspection')
     mkdir('D:\Midea_AI_Inspection');
     mkdir('D:\Midea_AI_Inspection\train');
     mkdir('D:\Midea_AI_Inspection\test');
-    mkdir('D:\Midea_AI_Inspection\detection');
+    mkdir('D:\Midea_AI_Inspection\raw');
+    mkdir('D:\Midea_AI_Inspection\standard')
 else
     if ~exist('D:\Midea_AI_Inspection\train')
         mkdir('D:\Midea_AI_Inspection\train');
@@ -14,8 +15,11 @@ else
     if ~exist('D:\Midea_AI_Inspection\test')
         mkdir('D:\Midea_AI_Inspection\test');
     end
-    if ~exist('D:\Midea_AI_Inspection\detection')
-        mkdir('D:\Midea_AI_Inspection\detection');
+    if ~exist('D:\Midea_AI_Inspection\raw')
+        mkdir('D:\Midea_AI_Inspection\raw');
+    end
+    if ~exist('D:\Midea_AI_Inspection\standard')
+        mkdir('D:\Midea_AI_Inspection\standard');
     end
 
 end
