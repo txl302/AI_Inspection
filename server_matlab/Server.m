@@ -7,6 +7,9 @@ capture = 10;
 u_edge = udp('127.0.0.1', 4012, 'LocalPort', 8012);
 u_mobile = udp('127.0.0.1', 4013, 'LocalPort', 8013);
 
+u_edge.timeout = 1000;
+u_mobile.timeout = 1000;
+
 fopen(u_edge)
 fopen(u_mobile)
 
@@ -51,17 +54,25 @@ while 1
                 
                 BW(:,:,i) = roipoly(standard_img, c(:,i), r(:,i));
 
-                eval(['didb.sample',num2str(i),'.data','=','[]',';']);
-                eval(['didb.sample',num2str(i),'.label','=','[]',';']);
-                eval(['didb.sample',num2str(i),'.set','=','[]',';']);
-
+                
+                
             end
-
+            
             fprintf('receiving done!')
             
         case 102
             
+            fprintf('setting...')
+            
             n_parts = fread(u_mobile, 100)
+            
+            for i = 1:n_parts
+                
+                eval(['didb.sample',num2str(i),'.data','=','[]',';']);
+                eval(['didb.sample',num2str(i),'.label','=','[]',';']);
+                eval(['didb.sample',num2str(i),'.set','=','[]',';']);
+                
+            end
             
         case 11
             
