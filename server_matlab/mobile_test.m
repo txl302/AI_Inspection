@@ -48,6 +48,12 @@ for i = 1:n
     
 end
 
+fwrite(u3, 17)
+
+fwrite(u3, 13)
+
+fwrite(u3, 12)
+
 fwrite(u3, 20)
 
 fclose(u3)

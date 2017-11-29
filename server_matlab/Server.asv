@@ -76,19 +76,11 @@ while 1
             img = imread(strcat(a(n).folder, '\', a(n).name));
             imshow(img);
             
-            DS = [];
-            
             for i = 1:n_parts
                 
-                xt = Bfx_lbp(img, [], options);
+                xt 
                 
-                %ds = Bcl_svm(Xt,op)
-                eval(['ds','=','Bcl_svm(xt, op',num2str(j),')',';']);
-                
-                DS = [DS, ds];
             end
-            
-            DS
             
         case 13
             fprintf('trainning\n')
