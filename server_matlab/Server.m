@@ -35,7 +35,7 @@ while 1
             source_standard_img = strcat(strcat(b(n).folder, '\', b(n).name));
             standard_img = imread(source_standard_img);
             
-            fwrite(u_mobile, 101)
+            fwrite(u_mobile, 10)
             
             fprintf('done!\n')
             
@@ -58,6 +58,10 @@ while 1
             end
 
             fprintf('receiving done!')
+            
+        case 102
+            
+            n_parts = fread(u_mobile, 100)
             
         case 11
             
@@ -88,7 +92,11 @@ while 1
                 DS = [DS, ds];
             end
             
-            DS
+            fwrite(u_mobile, 12)
+            
+            fwrite(u_mobile, DS)
+            
+            fprintf('Detection done!\n')
             
         case 13
             fprintf('trainning\n')
@@ -129,6 +137,8 @@ while 1
             %
             % fprintf('Testing.......');
             % ds = Bcl_svm(Xt,op);
+            
+            fwrite(u_mobile, 13)
             
             fprintf('Trainning done!\n')
             
@@ -189,13 +199,16 @@ while 1
             
             %save didb didb
             
-            fwrite(u_mobile, 121)
+            fwrite(u_mobile, 17)
             
             fprintf('data set making done!\n')
             
         case 20
             
+            fwrite(u_mobile, 20)
+            
             fprintf('disconnect\n')
+
             fclose(u_edge)
             fclose(u_mobile)
             break

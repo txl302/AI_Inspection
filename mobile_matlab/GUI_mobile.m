@@ -22,7 +22,7 @@ function varargout = GUI_mobile(varargin)
 
 % Edit the above text to modify the response to help GUI_mobile
 
-% Last Modified by GUIDE v2.5 08-Nov-2017 14:44:27
+% Last Modified by GUIDE v2.5 28-Nov-2017 18:51:53
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -58,6 +58,16 @@ handles.output = hObject;
 % Update handles structure
 guidata(hObject, handles);
 
+global u3
+u3 = udp('127.0.0.1', 'RemotePort', 8013, 'LocalPort', 4013);
+
+axes(handles.axes1);
+imshow(imread('resource\black.bmp'));
+axes(handles.axes2);
+imshow(imread('resource\logo.png'));
+axes(handles.axes3);
+imshow(imread('resource\ok.bmp'));
+
 % UIWAIT makes GUI_mobile wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
 
@@ -73,18 +83,45 @@ function varargout = GUI_mobile_OutputFcn(hObject, eventdata, handles)
 varargout{1} = handles.output;
 
 
-% --- Executes on button press in pushbutton1.
-function pushbutton1_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton1 (see GCBO)
+% --- Executes on button press in Bn_connect.
+function Bn_connect_Callback(hObject, eventdata, handles)
+% hObject    handle to Bn_connect (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global u3
+fopen(u3)
+
+fwrite(u3, 10)
+
+fd_back = fread(u3, 10)
+
+if fd_back == 10
+
+    set(handles.edit1,'string','Initialization done!');
+    
+end
 
 
-% --- Executes on button press in pushbutton2.
-function pushbutton2_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton2 (see GCBO)
+
+
+% --- Executes on button press in Bn_disconnect.
+function Bn_disconnect_Callback(hObject, eventdata, handles)
+% hObject    handle to Bn_disconnect (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+global u3
+
+fwrite(u3, 20)
+
+fd_back = fread(u3, 20)
+
+if fd_back == 20
+    
+    set(handles.edit1,'string','Disconnected!');
+    
+end
+
+fclose(u3)
 
 
 % --- Executes on button press in pushbutton3.
@@ -101,11 +138,27 @@ function pushbutton4_Callback(hObject, eventdata, handles)
 % handles    structure with handles and user data (see GUIDATA)
 
 
-% --- Executes on button press in pushbutton5.
-function pushbutton5_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton5 (see GCBO)
+% --- Executes on button press in Bn_detection.
+function Bn_detection_Callback(hObject, eventdata, handles)
+% hObject    handle to Bn_detection (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+global u3
+
+fwrite(u3, 12)
+
+fd_back = fread(u3, 10)
+
+DS = fread(u3, 10)
+
+if fd_back == 12
+    
+    set(handles.edit1,'string',num2str(DS));
+    
+end
+
+fclose(u3)
 
 
 % --- Executes on button press in pushbutton6.
@@ -113,3 +166,106 @@ function pushbutton6_Callback(hObject, eventdata, handles)
 % hObject    handle to pushbutton6 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+
+function edit1_Callback(hObject, eventdata, handles)
+% hObject    handle to edit1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit1 as text
+%        str2double(get(hObject,'String')) returns contents of edit1 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit1_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in Bn_dataset_makeing.
+function Bn_dataset_makeing_Callback(hObject, eventdata, handles)
+% hObject    handle to Bn_dataset_makeing (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+global u3
+
+fwrite(u3, 17)
+
+fd_back = fread(u3, 10)
+
+if fd_back == 17
+    
+    set(handles.edit1,'string','Dataset created!');
+    
+end
+
+fclose(u3)
+
+
+% --- Executes on button press in Bn_training.
+function Bn_training_Callback(hObject, eventdata, handles)
+% hObject    handle to Bn_training (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+global u3
+
+fwrite(u3, 13)
+
+fd_back = fread(u3, 10)
+
+if fd_back == 13
+    
+    set(handles.edit1,'string','Training done!');
+    
+end
+
+fclose(u3)
+
+
+% --- Executes on button press in Bn_setting.
+function Bn_setting_Callback(hObject, eventdata, handles)
+% hObject    handle to Bn_setting (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+global u3
+
+fwrite(u3, 102)
+
+n_parts = str2double(get(handles.Input_parts,'String'))
+
+fwrite(u3, n_parts)
+
+
+
+function edit2_Callback(hObject, eventdata, handles)
+% hObject    handle to edit2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit2 as text
+%        str2double(get(hObject,'String')) returns contents of edit2 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit2_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit2 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
