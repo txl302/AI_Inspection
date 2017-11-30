@@ -173,7 +173,7 @@ imshow(img);
 
 if fd_back == 12
     
-    if DS == n_parts
+    if sum(DS) == n_parts
         
         set(handles.edit1,'string','The part is OK');
         
@@ -182,7 +182,9 @@ if fd_back == 12
         
     else
         
-        set(handles.edit1,'string','part 1 missing');
+        n_missing = find(DS > 1);
+        
+        set(handles.edit1,'string',strcat('Part', ' ', num2str(n_missing), ' missing!'));
         
         axes(handles.axes3);
         imshow(imread('resource\ng.bmp'));
@@ -434,11 +436,9 @@ n = length(standard_img);
 
 img = imread(strcat(standard_img(n).folder, '\', standard_img(n).name));
 
-
-
 for i = 1:n_parts
     
-    [BW, cn(:,i), rn(:,i)] = roipoly(img)
+    [BW, cn(:,i), rn(:,i)] = roipoly(img);
     
     fwrite(u3, cn(:,i), 'float')
     fwrite(u3, rn(:,i), 'float')

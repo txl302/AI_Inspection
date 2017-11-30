@@ -88,25 +88,26 @@ while 1
             
             fprintf('detection\n')
             
-            a = dir('D:\camera\raw');
+            a = dir('D:\Midea_AI_Inspection\raw');
             n = length(a);
             
             img = imread(strcat(a(n).folder, '\', a(n).name));
             %imshow(img);
             
-            gray = rgb2gray(img);
-            
-            
+            gray_detect = rgb2gray(img);
+ 
             DS = [];
             
             for i = 1:n_parts
                 
-                gray = double(gray).*double(BW(:,:,i));
+                gray_detect_c = double(gray_detect).*double(BW(:,:,i));
                 
-                xt = Bfx_lbp(gray, [], options);
+                %gray = mat2gray(gray);
+                
+                xt = Bfx_lbp(gray_detect_c, [], options);
                 
                 %ds = Bcl_svm(Xt,op)
-                eval(['ds','=','Bcl_svm(xt, op',num2str(j),')',';']);
+                eval(['ds','=','Bcl_svm(xt, op',num2str(i),')',';']);
                 
                 DS = [DS, ds];
             end
@@ -178,9 +179,9 @@ while 1
         case 17
             
             fprintf('making dataset\n')
-            a = dir('D:\camera\train\');
+            a = dir('D:\Midea_AI_Inspection\train\');
 
-            o_path = strcat('D:\camera\train\', num2str(0), '\')
+            o_path = strcat('D:\Midea_AI_Inspection\train\', num2str(0), '\')
             
             o_dir = dir(o_path);
             
@@ -192,26 +193,30 @@ while 1
                     n_current = n_current + 1;
                     
                     img = imread(strcat(o_dir(i).folder, '\', o_dir(i).name));
-                    gray = rgb2gray(img);
+                    gray_train = rgb2gray(img);
                     
-                    gray = double(gray).*double(BW(:,:,j));
+                    gray_train_c = double(gray_train).*double(BW(:,:,j));
                     
-                    eval(['didb.sample',num2str(j),'.data(:,:,n_current)','=','gray',';']);
+                    %gray = mat2gray(gray);
+                    
+                    eval(['didb.sample',num2str(j),'.data(:,:,n_current)','=','gray_train_c',';']);
                     eval(['didb.sample',num2str(j),'.label','=','[didb.sample',num2str(j),'.label, 1]',';']);
                     eval(['didb.sample',num2str(j),'.set','=','[didb.sample',num2str(j),'.set, 1]',';']);
 
                 end
                 
-                n_path = strcat('D:\camera\train\', num2str(j), '\')
+                n_path = strcat('D:\Midea_AI_Inspection\train\', num2str(j), '\')
                 
                 n_dir = dir(n_path)
                 
                 for i = 3:length(n_dir)
                     n_current = n_current + 1;
                     img = imread(strcat(n_dir(i).folder, '\', n_dir(i).name));
-                    gray = rgb2gray(img);
+                    gray_train = rgb2gray(img);
                     
-                    eval(['didb.sample',num2str(j),'.data(:,:,n_current)','=','gray',';']);
+                    gray_train_c = double(gray_train).*double(BW(:,:,j));
+                    
+                    eval(['didb.sample',num2str(j),'.data(:,:,n_current)','=','gray_train_c',';']);
                     eval(['didb.sample',num2str(j),'.label','=','[didb.sample',num2str(j),'.label, 2]',';']);
                     eval(['didb.sample',num2str(j),'.set','=','[didb.sample',num2str(j),'.set, 1]',';']);
                 end
