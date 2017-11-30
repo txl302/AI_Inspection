@@ -155,16 +155,16 @@ for j = 1:n
     dt = didb.images.label(i2)';
     
     op.kernel = 1;
-    fprintf('Training.......');
-    op = Bcl_svm(X,d,op);
+%     fprintf('Training.......');
+%     op = Bcl_svm(X,d,op);
     %
     % fprintf('Testing.......');
     % ds = Bcl_svm(Xt,op);
     
-%     fprintf('Training & Testing.......');
-%     ds = Bcl_svm(X,d,Xt,op);
-%     
-%     p = Bev_performance(ds,dt)
+    fprintf('Training & Testing.......');
+    ds = Bcl_svm(X,d,Xt,op);
+    
+    p = Bev_performance(ds,dt)
     
     %save the dataset
     

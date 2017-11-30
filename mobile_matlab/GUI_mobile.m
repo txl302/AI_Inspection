@@ -22,7 +22,7 @@ function varargout = GUI_mobile(varargin)
 
 % Edit the above text to modify the response to help GUI_mobile
 
-% Last Modified by GUIDE v2.5 29-Nov-2017 16:15:11
+% Last Modified by GUIDE v2.5 29-Nov-2017 20:24:18
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -63,12 +63,16 @@ u3 = udp('127.0.0.1', 'RemotePort', 8013, 'LocalPort', 4013);
 
 u3.timeout = 1000;
 
-axes(handles.axes1);
-imshow(imread('resource\black.bmp'));
+u3.OutputBufferSize=8192;
+u3.InputBufferSize=8192;
+
 axes(handles.axes2);
 imshow(imread('resource\logo.png'));
 axes(handles.axes3);
 imshow(imread('resource\ok.bmp'));
+
+axes(handles.axes1);
+imshow(imread('resource\black.bmp'));
 
 % UIWAIT makes GUI_mobile wait for user response (see UIRESUME)
 % uiwait(handles.figure1);
@@ -419,8 +423,27 @@ function Bn_circling_Callback(hObject, eventdata, handles)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-img = imread()
+global u3
+global n_parts
 
+fwrite(u3, 101)
+
+standard_img = dir('D:\Midea_AI_Inspection\standard\');
+
+n = length(standard_img);
+
+img = imread(strcat(standard_img(n).folder, '\', standard_img(n).name));
+
+
+
+for i = 1:n_parts
+    
+    [BW, cn(:,i), rn(:,i)] = roipoly(img)
+    
+    fwrite(u3, cn(:,i), 'float')
+    fwrite(u3, rn(:,i), 'float')
+
+end
 
 % --- Executes on button press in pushbutton11.
 function pushbutton11_Callback(hObject, eventdata, handles)
@@ -450,3 +473,10 @@ function edit8_CreateFcn(hObject, eventdata, handles)
 if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
     set(hObject,'BackgroundColor','white');
 end
+
+
+% --- Executes on button press in pushbutton12.
+function pushbutton12_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton12 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)

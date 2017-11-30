@@ -8,7 +8,12 @@ u_edge = udp('127.0.0.1', 4012, 'LocalPort', 8012);
 u_mobile = udp('127.0.0.1', 4013, 'LocalPort', 8013);
 
 u_edge.timeout = 1000;
+u_edge.OutputBufferSize=8192;
+u_edge.InputBufferSize=8192;
+
 u_mobile.timeout = 1000;
+u_mobile.OutputBufferSize=8192;
+u_mobile.InputBufferSize=8192;
 
 fopen(u_edge)
 fopen(u_mobile)
@@ -46,19 +51,17 @@ while 1
             
             fprintf('receiving dot set...\n')
             
-            n_parts = fread(u_mobile, 100)
-            
             for i = 1:n_parts
-                c(:,i) = fread(u_mobile, 100)
-                r(:,i) = fread(u_mobile, 100)
+                c(:,i) = fread(u_mobile, 100, 'float')
+                r(:,i) = fread(u_mobile, 100, 'float')
                 
                 BW(:,:,i) = roipoly(standard_img, c(:,i), r(:,i));
-
-                
-                
+ 
             end
             
             fprintf('receiving done!')
+            
+            %imshow(BW(:,:,1));
             
         case 102
             
@@ -89,13 +92,18 @@ while 1
             n = length(a);
             
             img = imread(strcat(a(n).folder, '\', a(n).name));
-            imshow(img);
+            %imshow(img);
+            
+            gray = rgb2gray(img);
+            
             
             DS = [];
             
             for i = 1:n_parts
                 
-                xt = Bfx_lbp(img, [], options);
+                gray = double(gray).*double(BW(:,:,i));
+                
+                xt = Bfx_lbp(gray, [], options);
                 
                 %ds = Bcl_svm(Xt,op)
                 eval(['ds','=','Bcl_svm(xt, op',num2str(j),')',';']);
@@ -185,6 +193,8 @@ while 1
                     
                     img = imread(strcat(o_dir(i).folder, '\', o_dir(i).name));
                     gray = rgb2gray(img);
+                    
+                    gray = double(gray).*double(BW(:,:,j));
                     
                     eval(['didb.sample',num2str(j),'.data(:,:,n_current)','=','gray',';']);
                     eval(['didb.sample',num2str(j),'.label','=','[didb.sample',num2str(j),'.label, 1]',';']);
