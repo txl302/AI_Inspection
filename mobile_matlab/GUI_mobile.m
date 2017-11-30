@@ -22,7 +22,7 @@ function varargout = GUI_mobile(varargin)
 
 % Edit the above text to modify the response to help GUI_mobile
 
-% Last Modified by GUIDE v2.5 29-Nov-2017 10:52:08
+% Last Modified by GUIDE v2.5 29-Nov-2017 16:15:11
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -158,6 +158,15 @@ DS = fread(u3, 10)
 
 result = sum(DS)
 
+current_img = dir('D:\Midea_AI_Inspection\raw\');
+
+n = length(current_img);
+
+img = imread(strcat(current_img(n).folder, '\', current_img(n).name));
+
+axes(handles.axes1);
+imshow(img);
+
 if fd_back == 12
     
     if DS == n_parts
@@ -169,7 +178,7 @@ if fd_back == 12
         
     else
         
-        set(handles.edit1,'string','The part is NG');
+        set(handles.edit1,'string','part 1 missing');
         
         axes(handles.axes3);
         imshow(imread('resource\ng.bmp'));
@@ -394,6 +403,45 @@ function edit7_Callback(hObject, eventdata, handles)
 % --- Executes during object creation, after setting all properties.
 function edit7_CreateFcn(hObject, eventdata, handles)
 % hObject    handle to edit7 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in Bn_circling.
+function Bn_circling_Callback(hObject, eventdata, handles)
+% hObject    handle to Bn_circling (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+img = imread()
+
+
+% --- Executes on button press in pushbutton11.
+function pushbutton11_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton11 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+
+function edit8_Callback(hObject, eventdata, handles)
+% hObject    handle to edit8 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of edit8 as text
+%        str2double(get(hObject,'String')) returns contents of edit8 as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function edit8_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to edit8 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
