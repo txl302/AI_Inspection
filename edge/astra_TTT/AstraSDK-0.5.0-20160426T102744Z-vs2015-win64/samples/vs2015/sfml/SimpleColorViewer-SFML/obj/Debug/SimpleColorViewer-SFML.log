@@ -1,0 +1,6 @@
+﻿  main.cpp
+D:\astra_TTT\AstraSDK-0.5.0-20160426T102744Z-vs2015-win64\samples\vs2015\../sfml/SimpleColorViewer-SFML/main.cpp(61): warning C4244: 'initializing': conversion from '__int64' to 'float', possible loss of data
+D:\astra_TTT\AstraSDK-0.5.0-20160426T102744Z-vs2015-win64\samples\vs2015\../sfml/SimpleColorViewer-SFML/main.cpp(61): warning C4244: 'initializing': conversion from '__int64' to 'const float', possible loss of data
+D:\astra_TTT\AstraSDK-0.5.0-20160426T102744Z-vs2015-win64\samples\vs2015\../sfml/SimpleColorViewer-SFML/main.cpp(172): warning C4996: 'sf::RenderWindow::capture': was declared deprecated
+  D:\SFML-2.4.2\include\SFML/Graphics/RenderWindow.hpp(140): note: see declaration of 'sf::RenderWindow::capture'
+  SimpleColorViewer-SFML.vcxproj -> D:\astra_TTT\AstraSDK-0.5.0-20160426T102744Z-vs2015-win64\samples\vs2015\bin/Debug/SimpleColorViewer-SFML.exe

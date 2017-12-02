@@ -2,9 +2,7 @@ clc
 clear all
 close all
 
-capture = 10;
-
-u_edge = udp('127.0.0.1', 4012, 'LocalPort', 8012);
+u_edge = udp('192.168.0.126', 4012, 'LocalPort', 8012);
 u_mobile = udp('127.0.0.1', 4013, 'LocalPort', 8013);
 
 u_edge.timeout = 1000;
@@ -27,21 +25,21 @@ while 1
         case 10
             fprintf('Initializating...')
             
-            fwrite(u_edge, capture)
+            %fwrite(u_edge, 11)
             
-            a = dir('D:\Midea_AI_Inspection\raw');
-            n = length(a);
-            
-            source = strcat(strcat(a(n).folder, '\', a(n).name));
-            destination = 'D:\Midea_AI_Inspection\standard';
-            
-            copyfile(source,destination)
-            
-            b = dir('D:\Midea_AI_Inspection\standard');
-            n = length(b);
-            
-            source_standard_img = strcat(strcat(b(n).folder, '\', b(n).name));
-            standard_img = imread(source_standard_img);
+%             a = dir('D:\Midea_AI_Inspection\raw');
+%             n = length(a);
+%             
+%             source = strcat(strcat(a(n).folder, '\', a(n).name));
+%             destination = 'D:\Midea_AI_Inspection\standard';
+%             
+%             copyfile(source,destination)
+%             
+%             b = dir('D:\Midea_AI_Inspection\standard');
+%             n = length(b);
+%             
+%             source_standard_img = strcat(strcat(b(n).folder, '\', b(n).name));
+%             standard_img = imread(source_standard_img);
             
             fwrite(u_mobile, 10)
             
@@ -65,7 +63,7 @@ while 1
             
         case 102
             
-            fprintf('setting...')
+            fprintf('n_parts setting...')
             
             n_parts = fread(u_mobile, 100)
             
@@ -77,12 +75,49 @@ while 1
                 
             end
             
+            fprintf('n_parts setting done!')
+            
+        case 103
+            
+            fprintf('weights setting')
+            
+            weights = [];
+            
+            for i = 1:n_parts
+                
+                
+                
+            end
+            
+        case 104
+            
+            fprintf('uploading ok sample ...')
+            
+        case 105
+            
+            fprintf('uploading ng sample...')
+            
         case 11
             
             fprintf('capturing...\n')
-            fwrite(u_edge,capture)
+            fwrite(u_edge, 11)
             
-            fprintf('capturing...done!')
+            rec = fread(u_edge, 100)
+            
+            if  rec == 111
+                
+                getfile('192.168.0.126')
+                
+                fprintf('capturing...done!')
+                
+            end
+            
+            c = dir
+            
+            movefile(c(3).name, 'D:\Midea_AI_Inspection\raw')
+            
+            fwrite(u_mobile, 111)
+            
             
         case 12
             
@@ -230,6 +265,8 @@ while 1
             fprintf('data set making done!\n')
             
         case 20
+            
+            fwrite(u_edge, 20)
             
             fwrite(u_mobile, 20)
             

@@ -1,0 +1,24 @@
+sorted list                                                    calls       self time      total time
+<unprofiled>                                                     0.0    254 ms 4528389%    254 ms 45
+astra::hand::hand_tracker::on_frame_ready                        0.9      6 us  100%      6 us  100%
+astra::hand::hand_tracker::create_streams                        0.0      0 ns    0%      0 ns    0%
+astra::hand::hand_tracker::hand_tracker                          0.0      0 ns    0%      0 ns    0%
+astra::hand::depth_utility::reset                                0.0      0 ns    0%      0 ns    0%
+astra::hand::depth_utility::depth_utility                        0.0      0 ns    0%      0 ns    0%
+astra::hand::depth_utility::~depth_utility                       0.1      0 ns    0%      0 ns    0%
+astra::hand::point_processor::~point_processor                   0.1      0 ns    0%      0 ns    0%
+astra::hand::hand_tracker::~hand_tracker                         0.1      0 ns    0%      0 ns    0%
+astra::hand::point_processor::point_processor                    0.0      0 ns    0%      0 ns    0%
+
+call tree                                                      calls       self time      total time
+<unprofiled>                                                     0.0    254 ms 4528389%    254 ms 45
+  astra::hand::depth_utility::depth_utility                      0.0      0 ns    0%      0 ns    0%
+    astra::hand::depth_utility::reset                            0.0      0 ns    0%      0 ns    0%
+  astra::hand::point_processor::point_processor                  0.0      0 ns    0%      0 ns    0%
+  astra::hand::hand_tracker::hand_tracker                        0.0      0 ns    0%      0 ns    0%
+    astra::hand::hand_tracker::create_streams                    0.0      0 ns    0%      0 ns    0%
+  astra::hand::hand_tracker::on_frame_ready                      0.9      6 us  100%      6 us  100%
+  astra::hand::hand_tracker::~hand_tracker                       0.1      0 ns    0%      0 ns    0%
+  astra::hand::point_processor::~point_processor                 0.1      0 ns    0%      0 ns    0%
+  astra::hand::depth_utility::~depth_utility                     0.1      0 ns    0%      0 ns    0%
+

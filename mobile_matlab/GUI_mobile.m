@@ -22,7 +22,7 @@ function varargout = GUI_mobile(varargin)
 
 % Edit the above text to modify the response to help GUI_mobile
 
-% Last Modified by GUIDE v2.5 29-Nov-2017 20:24:18
+% Last Modified by GUIDE v2.5 01-Dec-2017 17:21:12
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -65,6 +65,9 @@ u3.timeout = 1000;
 
 u3.OutputBufferSize=8192;
 u3.InputBufferSize=8192;
+
+global part_n
+part_n = 0;
 
 axes(handles.axes2);
 imshow(imread('resource\logo.png'));
@@ -130,18 +133,26 @@ end
 fclose(u3)
 
 
-% --- Executes on button press in pushbutton3.
-function pushbutton3_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton3 (see GCBO)
+% --- Executes on button press in upload_ok.
+function upload_ok_Callback(hObject, eventdata, handles)
+% hObject    handle to upload_ok (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
+global u3
 
-% --- Executes on button press in pushbutton4.
-function pushbutton4_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton4 (see GCBO)
+fprintf('uploading ok sample...')
+
+
+% --- Executes on button press in upload_ng.
+function upload_ng_Callback(hObject, eventdata, handles)
+% hObject    handle to upload_ng (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+global u3
+
+fprintf('uploading ng sample...')
 
 
 % --- Executes on button press in Bn_detection.
@@ -264,9 +275,9 @@ if fd_back == 13
 end
 
 
-% --- Executes on button press in Bn_setting.
-function Bn_setting_Callback(hObject, eventdata, handles)
-% hObject    handle to Bn_setting (see GCBO)
+% --- Executes on button press in Bn_setting_n_parts.
+function Bn_setting_n_parts_Callback(hObject, eventdata, handles)
+% hObject    handle to Bn_setting_n_parts (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
@@ -305,18 +316,18 @@ end
 
 
 
-function edit3_Callback(hObject, eventdata, handles)
-% hObject    handle to edit3 (see GCBO)
+function channel_r_Callback(hObject, eventdata, handles)
+% hObject    handle to channel_r (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit3 as text
-%        str2double(get(hObject,'String')) returns contents of edit3 as a double
+% Hints: get(hObject,'String') returns contents of channel_r as text
+%        str2double(get(hObject,'String')) returns contents of channel_r as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit3_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit3 (see GCBO)
+function channel_r_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to channel_r (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -328,18 +339,18 @@ end
 
 
 
-function edit4_Callback(hObject, eventdata, handles)
-% hObject    handle to edit4 (see GCBO)
+function channel_g_Callback(hObject, eventdata, handles)
+% hObject    handle to channel_g (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit4 as text
-%        str2double(get(hObject,'String')) returns contents of edit4 as a double
+% Hints: get(hObject,'String') returns contents of channel_g as text
+%        str2double(get(hObject,'String')) returns contents of channel_g as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit4_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit4 (see GCBO)
+function channel_g_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to channel_g (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -351,18 +362,18 @@ end
 
 
 
-function edit5_Callback(hObject, eventdata, handles)
-% hObject    handle to edit5 (see GCBO)
+function channel_b_Callback(hObject, eventdata, handles)
+% hObject    handle to channel_b (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit5 as text
-%        str2double(get(hObject,'String')) returns contents of edit5 as a double
+% Hints: get(hObject,'String') returns contents of channel_b as text
+%        str2double(get(hObject,'String')) returns contents of channel_b as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit5_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit5 (see GCBO)
+function channel_b_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to channel_b (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -374,18 +385,18 @@ end
 
 
 
-function edit6_Callback(hObject, eventdata, handles)
-% hObject    handle to edit6 (see GCBO)
+function channel_d_Callback(hObject, eventdata, handles)
+% hObject    handle to channel_d (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
-% Hints: get(hObject,'String') returns contents of edit6 as text
-%        str2double(get(hObject,'String')) returns contents of edit6 as a double
+% Hints: get(hObject,'String') returns contents of channel_d as text
+%        str2double(get(hObject,'String')) returns contents of channel_d as a double
 
 
 % --- Executes during object creation, after setting all properties.
-function edit6_CreateFcn(hObject, eventdata, handles)
-% hObject    handle to edit6 (see GCBO)
+function channel_d_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to channel_d (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    empty - handles not created until after all CreateFcns called
 
@@ -428,6 +439,8 @@ function Bn_circling_Callback(hObject, eventdata, handles)
 global u3
 global n_parts
 
+global part_n
+
 fwrite(u3, 101)
 
 standard_img = dir('D:\Midea_AI_Inspection\standard\');
@@ -445,11 +458,51 @@ for i = 1:n_parts
 
 end
 
-% --- Executes on button press in pushbutton11.
-function pushbutton11_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton11 (see GCBO)
+part_n = part_n + 1;
+
+set(handles.part_n, 'enable', 'on')
+
+set(handles.channel_r, 'enable', 'on')
+set(handles.channel_g, 'enable', 'on')
+set(handles.channel_b, 'enable', 'on')
+set(handles.channel_d, 'enable', 'on')
+
+set(handles.Bn_setting_weights, 'enable', 'on')
+
+set(handles.part_n, 'string', num2str(part_n))
+
+
+% --- Executes on button press in Bn_capture.
+function Bn_capture_Callback(hObject, eventdata, handles)
+% hObject    handle to Bn_capture (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+global u3
+
+
+
+fwrite(u3, 11)
+
+fd_back = fread(u3, 100)
+
+if fd_back == 111
+    
+    pause(1)
+    
+    a = dir('D:\Midea_AI_Inspection\raw');
+    n = length(a)
+    
+    axes(handles.axes1);
+    imshow(imread(strcat('D:\Midea_AI_Inspection\raw\', a(n).name)));
+    
+end
+
+
+
+
+
+
 
 
 
@@ -475,8 +528,88 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in pushbutton12.
-function pushbutton12_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton12 (see GCBO)
+% --- Executes on button press in Bn_setting_weights.
+function Bn_setting_weights_Callback(hObject, eventdata, handles)
+% hObject    handle to Bn_setting_weights (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+%global u3
+
+global n_parts
+
+global part_n
+
+%fwrite(u3, 103)
+
+weights = [];
+
+if (part_n < n_parts)
+
+    channel_r = str2double(get(handles.channel_r,'String'));
+    channel_g = str2double(get(handles.channel_g,'String'));
+    channel_b = str2double(get(handles.channel_b,'String'));
+    channel_d = str2double(get(handles.channel_d,'String'));
+    
+    weights = [channel_r, channel_g, channel_b, channel_d]
+    
+    %fwrite(u3, weights)
+    
+    part_n = part_n + 1
+    
+    set(handles.part_n,'string',num2str(part_n));
+    
+    set(handles.channel_r, 'string', num2str(1.0))
+    set(handles.channel_g, 'string', num2str(1.0))
+    set(handles.channel_b, 'string', num2str(1.0))
+    set(handles.channel_d, 'string', num2str(1.0))
+    
+else
+    
+    part_n = 0
+    
+    set(handles.part_n, 'enable', 'off')
+    
+    set(handles.channel_r, 'enable', 'off')
+    set(handles.channel_g, 'enable', 'off')
+    set(handles.channel_b, 'enable', 'off')
+    set(handles.channel_d, 'enable', 'off')
+    
+    set(handles.Bn_setting_weights, 'enable', 'off')
+    
+end
+
+
+%n_parts = str2double(get(handles.edit2,'String'))
+
+%fwrite(u3, n_parts)
+
+
+
+function part_n_Callback(hObject, eventdata, handles)
+% hObject    handle to part_n (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of part_n as text
+%        str2double(get(hObject,'String')) returns contents of part_n as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function part_n_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to part_n (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in pushbutton13.
+function pushbutton13_Callback(hObject, eventdata, handles)
+% hObject    handle to pushbutton13 (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)

@@ -1,0 +1,52 @@
+sorted list                                                    calls       self time      total time
+<unprofiled>                                                     0.0     13 ms  622%     15 ms  722%
+oni_stream_end_write                                             0.2      2 ms   97%      2 ms   97%
+orbbec::ni::devicestream<struct _astra_imageframe_wrapper>::o    0.2     37 us    2%      2 ms   99%
+streamset_read                                                   0.9     13 us    1%      2 ms  100%
+orbbec::ni::oni_adapter_plugin::temp_update                      0.9      7 us    0%      2 ms  100%
+orbbec::ni::oni_adapter_plugin::read_streams                     0.9    578 ns    0%      2 ms  100%
+oni_stream_readFrame                                             0.2    318 ns    0%    318 ns    0%
+orbbec::ni::oni_adapter_plugin::~oni_adapter_plugin              0.1     28 ns    0%     28 ns    0%
+orbbec::ni::devicestream<struct _astra_imageframe_wrapper>::o    0.2     20 ns    0%     20 ns    0%
+orbbec::ni::depthstream::on_get_parameter                        0.0      0 ns    0%      0 ns    0%
+orbbec::ni::devicestream<struct _astra_imageframe_wrapper>::o    0.0      0 ns    0%      0 ns    0%
+orbbec::ni::devicestream<struct _astra_imageframe_wrapper>::o    0.0      0 ns    0%      0 ns    0%
+orbbec::ni::devicestream<struct _astra_imageframe_wrapper>::o    0.0      0 ns    0%      0 ns    0%
+orbbec::ni::depthstream::refresh_conversion_cache                0.0      0 ns    0%      0 ns    0%
+orbbec::ni::depthstream::on_open                                 0.0      0 ns    0%      0 ns    0%
+orbbec::ni::devicestream<struct _astra_imageframe_wrapper>::o    0.0      0 ns    0%      0 ns    0%
+orbbec::ni::device_streamset::open_sensor_streams                0.0      0 ns    0%      0 ns    0%
+orbbec::ni::device_streamset::open                               0.0      0 ns    0%      0 ns    0%
+orbbec::ni::device_streamset::device_streamset                   0.0      0 ns    0%      0 ns    0%
+orbbec::ni::oni_adapter_plugin::onDeviceConnected                0.0      0 ns    0%      0 ns    0%
+orbbec::ni::oni_adapter_plugin::init_openni                      0.0      0 ns    0%      0 ns    0%
+orbbec::ni::depthstream::depthstream                             0.0      0 ns    0%      0 ns    0%
+orbbec::ni::devicestream<struct _astra_imageframe_wrapper>::d    0.0      0 ns    0%      0 ns    0%
+orbbec::ni::stream::stream                                       0.0      0 ns    0%      0 ns    0%
+
+call tree                                                      calls       self time      total time
+<unprofiled>                                                     0.0     13 ms  622%     15 ms  722%
+  orbbec::ni::oni_adapter_plugin::init_openni                    0.0      0 ns    0%      0 ns    0%
+    orbbec::ni::oni_adapter_plugin::onDeviceConnected            0.0      0 ns    0%      0 ns    0%
+      orbbec::ni::device_streamset::device_streamset             0.0      0 ns    0%      0 ns    0%
+      orbbec::ni::device_streamset::open                         0.0      0 ns    0%      0 ns    0%
+        orbbec::ni::device_streamset::open_sensor_streams        0.0      0 ns    0%      0 ns    0%
+          orbbec::ni::stream::stream                             0.0      0 ns    0%      0 ns    0%
+          orbbec::ni::devicestream<struct _astra_imageframe_w    0.0      0 ns    0%      0 ns    0%
+          orbbec::ni::devicestream<struct _astra_imageframe_w    0.0      0 ns    0%      0 ns    0%
+          orbbec::ni::depthstream::depthstream                   0.0      0 ns    0%      0 ns    0%
+          orbbec::ni::depthstream::on_open                       0.0      0 ns    0%      0 ns    0%
+            orbbec::ni::depthstream::refresh_conversion_cache    0.0      0 ns    0%      0 ns    0%
+  orbbec::ni::devicestream<struct _astra_imageframe_wrapper>:    0.0      0 ns    0%      0 ns    0%
+  orbbec::ni::devicestream<struct _astra_imageframe_wrapper>:    0.0      0 ns    0%      0 ns    0%
+  orbbec::ni::devicestream<struct _astra_imageframe_wrapper>:    0.0      0 ns    0%      0 ns    0%
+  orbbec::ni::oni_adapter_plugin::temp_update                    0.9      7 us    0%      2 ms  100%
+    orbbec::ni::oni_adapter_plugin::read_streams                 0.9    578 ns    0%      2 ms  100%
+      streamset_read                                             0.9     13 us    1%      2 ms  100%
+        orbbec::ni::devicestream<struct _astra_imageframe_wra    0.2     37 us    2%      2 ms   99%
+          oni_stream_readFrame                                   0.2    318 ns    0%    318 ns    0%
+          orbbec::ni::devicestream<struct _astra_imageframe_w    0.2     20 ns    0%     20 ns    0%
+          oni_stream_end_write                                   0.2      2 ms   97%      2 ms   97%
+            orbbec::ni::depthstream::on_get_parameter            0.0      0 ns    0%      0 ns    0%
+  orbbec::ni::oni_adapter_plugin::~oni_adapter_plugin            0.1     28 ns    0%     28 ns    0%
+

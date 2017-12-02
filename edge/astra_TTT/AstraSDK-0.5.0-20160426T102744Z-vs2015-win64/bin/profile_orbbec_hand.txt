@@ -1,0 +1,131 @@
+sorted list                                                    calls       self time      total time
+<unprofiled>                                                     0.0    140 ms 12237%    141 ms 1233
+astra::hand::depth_utility::depth_to_velocity_signal             0.9    486 us   42%    761 us   66%
+astra::hand::point_processor::calculate_area                     0.9    204 us   18%    204 us   18%
+astra::hand::depth_utility::depthframe_to_matrix                 0.9    199 us   17%    199 us   17%
+astra::hand::hand_tracker::track_points                          0.9    140 us   12%    355 us   31%
+astra::hand::depth_utility::adjust_velocities_for_depth          0.9     36 us    3%     36 us    3%
+astra::hand::depth_utility::fill_zero_values                     0.9     27 us    2%     27 us    2%
+astra::hand::depth_utility::threshold_velocity_signal            0.9     13 us    1%     13 us    1%
+end_write                                                        0.9     13 us    1%     13 us    1%
+astra::hand::hand_tracker::on_frame_ready                        0.9     13 us    1%      1 ms  100%
+astra::hand::segmentation::find_next_velocity_seed_pixel         0.9     11 us    1%     11 us    1%
+astra::hand::hand_tracker::update_tracking                       0.9      2 us    0%      1 ms   99%
+astra::hand::point_processor::initialize_common_calculations     0.9    247 ns    0%    204 us   18%
+astra::hand::hand_tracker::update_hand_frame                     0.9    242 ns    0%    385 ns    0%
+astra::hand::hand_tracker::generate_hand_frame                   0.9    205 ns    0%     14 us    1%
+astra::hand::hand_tracker::reset_hand_point                      9.0    143 ns    0%    143 ns    0%
+astra::hand::point_processor::update_tracked_points              0.9     96 ns    0%     96 ns    0%
+astra::hand::hand_tracker::~hand_tracker                         0.1     85 ns    0%     85 ns    0%
+astra::hand::point_processor::update_trajectories                0.9     17 ns    0%     17 ns    0%
+astra::hand::point_processor::remove_stale_or_dead_points        0.9     11 ns    0%     11 ns    0%
+astra::hand::point_processor::remove_duplicate_points            0.9      8 ns    0%      8 ns    0%
+astra::hand::point_processor::update_full_resolution_points      0.9      5 ns    0%      5 ns    0%
+edge_dist_loop                                                   0.0      0 ns    0%      0 ns    0%
+astra::hand::segmentation::calculate_edge_distance               0.0      0 ns    0%      0 ns    0%
+astra::hand::segmentation::calculate_layer_score                 0.0      0 ns    0%      0 ns    0%
+astra::hand::segmentation::calculate_integral_area               0.0      0 ns    0%      0 ns    0%
+astra::hand::segmentation::enqueue_neighbors                     0.0      0 ns    0%      0 ns    0%
+astra::hand::segmentation::find_nearest_in_range_pixel           0.0      0 ns    0%      0 ns    0%
+astra::hand::segmentation::track_point_from_seed                 0.0      0 ns    0%      0 ns    0%
+astra::hand::segmentation::segment_foreground_and_get_average    0.0      0 ns    0%      0 ns    0%
+astra::hand::segmentation::get_circumference_points              0.0      0 ns    0%      0 ns    0%
+astra::hand::segmentation::get_percent_natural_edges             0.0      0 ns    0%      0 ns    0%
+astra::hand::point_processor::validate_and_update_tracked_poi    0.0      0 ns    0%      0 ns    0%
+astra::hand::point_processor::update_tracked_point               0.0      0 ns    0%      0 ns    0%
+astra::hand::segmentation::get_max_sequential_circumference_p    0.0      0 ns    0%      0 ns    0%
+astra::hand::segmentation::test_point_area_integral              0.0      0 ns    0%      0 ns    0%
+astra::hand::point_processor::start_probation                    0.0      0 ns    0%      0 ns    0%
+astra::hand::segmentation::test_foreground_radius_percentage     0.0      0 ns    0%      0 ns    0%
+astra::hand::scaling_coordinate_mapper::convert_depth_to_worl    0.0      0 ns    0%      0 ns    0%
+astra::hand::point_processor::update_tracked_point_data          0.0      0 ns    0%      0 ns    0%
+astra::hand::segmentation::test_natural_edges                    0.0      0 ns    0%      0 ns    0%
+astra::hand::segmentation::test_point_in_range                   0.0      0 ns    0%      0 ns    0%
+astra::hand::segmentation::create_test_pass_from_foreground      0.0      0 ns    0%      0 ns    0%
+astra::hand::point_processor::end_probation                      0.0      0 ns    0%      0 ns    0%
+astra::hand::point_processor::update_tracked_or_create_new_po    0.0      0 ns    0%      0 ns    0%
+astra::hand::hand_tracker::create_streams                        0.0      0 ns    0%      0 ns    0%
+astra::hand::hand_tracker::hand_tracker                          0.0      0 ns    0%      0 ns    0%
+astra::hand::point_processor::point_processor                    0.0      0 ns    0%      0 ns    0%
+astra::hand::depth_utility::reset                                0.0      0 ns    0%      0 ns    0%
+astra::hand::depth_utility::depth_utility                        0.0      0 ns    0%      0 ns    0%
+astra::hand::depth_utility::~depth_utility                       0.1      0 ns    0%      0 ns    0%
+astra::hand::point_processor::~point_processor                   0.1      0 ns    0%      0 ns    0%
+
+call tree                                                      calls       self time      total time
+<unprofiled>                                                     0.0    140 ms 12237%    141 ms 1233
+  astra::hand::depth_utility::depth_utility                      0.0      0 ns    0%      0 ns    0%
+    astra::hand::depth_utility::reset                            0.0      0 ns    0%      0 ns    0%
+  astra::hand::point_processor::point_processor                  0.0      0 ns    0%      0 ns    0%
+  astra::hand::hand_tracker::hand_tracker                        0.0      0 ns    0%      0 ns    0%
+    astra::hand::hand_tracker::create_streams                    0.0      0 ns    0%      0 ns    0%
+  astra::hand::hand_tracker::on_frame_ready                      0.9     13 us    1%      1 ms  100%
+    astra::hand::hand_tracker::update_tracking                   0.9      2 us    0%      1 ms   99%
+      astra::hand::depth_utility::depth_to_velocity_signal       0.9    486 us   42%    761 us   66%
+        astra::hand::depth_utility::depthframe_to_matrix         0.9    199 us   17%    199 us   17%
+        astra::hand::depth_utility::fill_zero_values             0.9     27 us    2%     27 us    2%
+        astra::hand::depth_utility::adjust_velocities_for_dep    0.9     36 us    3%     36 us    3%
+        astra::hand::depth_utility::threshold_velocity_signal    0.9     13 us    1%     13 us    1%
+      astra::hand::hand_tracker::track_points                    0.9    140 us   12%    355 us   31%
+        astra::hand::point_processor::initialize_common_calcu    0.9    247 ns    0%    204 us   18%
+          astra::hand::point_processor::calculate_area           0.9    204 us   18%    204 us   18%
+        astra::hand::point_processor::update_tracked_points      0.9     96 ns    0%     96 ns    0%
+          astra::hand::point_processor::update_tracked_point     0.0      0 ns    0%      0 ns    0%
+            astra::hand::segmentation::track_point_from_seed     0.0      0 ns    0%      0 ns    0%
+              astra::hand::segmentation::segment_foreground_a    0.0      0 ns    0%      0 ns    0%
+                astra::hand::segmentation::enqueue_neighbors     0.0      0 ns    0%      0 ns    0%
+                astra::hand::segmentation::find_nearest_in_ra    0.0      0 ns    0%      0 ns    0%
+                  astra::hand::segmentation::enqueue_neighbor    0.0      0 ns    0%      0 ns    0%
+              astra::hand::segmentation::calculate_edge_dista    0.0      0 ns    0%      0 ns    0%
+                edge_dist_loop                                   0.0      0 ns    0%      0 ns    0%
+              astra::hand::segmentation::calculate_integral_a    0.0      0 ns    0%      0 ns    0%
+              astra::hand::segmentation::calculate_layer_scor    0.0      0 ns    0%      0 ns    0%
+              astra::hand::segmentation::test_point_area_inte    0.0      0 ns    0%      0 ns    0%
+              astra::hand::segmentation::test_foreground_radi    0.0      0 ns    0%      0 ns    0%
+                astra::hand::segmentation::get_max_sequential    0.0      0 ns    0%      0 ns    0%
+                  astra::hand::segmentation::get_circumferenc    0.0      0 ns    0%      0 ns    0%
+              astra::hand::segmentation::test_natural_edges      0.0      0 ns    0%      0 ns    0%
+                astra::hand::segmentation::get_percent_natura    0.0      0 ns    0%      0 ns    0%
+            astra::hand::point_processor::validate_and_update    0.0      0 ns    0%      0 ns    0%
+              astra::hand::segmentation::test_point_in_range     0.0      0 ns    0%      0 ns    0%
+              astra::hand::point_processor::update_tracked_po    0.0      0 ns    0%      0 ns    0%
+                astra::hand::scaling_coordinate_mapper::conve    0.0      0 ns    0%      0 ns    0%
+              astra::hand::point_processor::end_probation        0.0      0 ns    0%      0 ns    0%
+              astra::hand::point_processor::start_probation      0.0      0 ns    0%      0 ns    0%
+        astra::hand::point_processor::remove_duplicate_points    0.9      8 ns    0%      8 ns    0%
+        astra::hand::segmentation::find_next_velocity_seed_pi    0.9     11 us    1%     11 us    1%
+        astra::hand::point_processor::remove_stale_or_dead_po    0.9     11 ns    0%     11 ns    0%
+        astra::hand::point_processor::update_full_resolution_    0.9      5 ns    0%      5 ns    0%
+        astra::hand::point_processor::update_trajectories        0.9     17 ns    0%     17 ns    0%
+        astra::hand::point_processor::update_tracked_or_creat    0.0      0 ns    0%      0 ns    0%
+          astra::hand::scaling_coordinate_mapper::convert_dep    0.0      0 ns    0%      0 ns    0%
+          astra::hand::segmentation::track_point_from_seed       0.0      0 ns    0%      0 ns    0%
+            astra::hand::segmentation::segment_foreground_and    0.0      0 ns    0%      0 ns    0%
+              astra::hand::segmentation::enqueue_neighbors       0.0      0 ns    0%      0 ns    0%
+            astra::hand::segmentation::calculate_edge_distanc    0.0      0 ns    0%      0 ns    0%
+              edge_dist_loop                                     0.0      0 ns    0%      0 ns    0%
+            astra::hand::segmentation::calculate_integral_are    0.0      0 ns    0%      0 ns    0%
+            astra::hand::segmentation::calculate_layer_score     0.0      0 ns    0%      0 ns    0%
+            astra::hand::segmentation::test_point_area_integr    0.0      0 ns    0%      0 ns    0%
+            astra::hand::segmentation::create_test_pass_from_    0.0      0 ns    0%      0 ns    0%
+              astra::hand::segmentation::test_point_area_inte    0.0      0 ns    0%      0 ns    0%
+              astra::hand::segmentation::test_foreground_radi    0.0      0 ns    0%      0 ns    0%
+                astra::hand::segmentation::get_max_sequential    0.0      0 ns    0%      0 ns    0%
+                  astra::hand::segmentation::get_circumferenc    0.0      0 ns    0%      0 ns    0%
+              astra::hand::segmentation::test_natural_edges      0.0      0 ns    0%      0 ns    0%
+                astra::hand::segmentation::get_percent_natura    0.0      0 ns    0%      0 ns    0%
+            astra::hand::segmentation::test_foreground_radius    0.0      0 ns    0%      0 ns    0%
+              astra::hand::segmentation::get_max_sequential_c    0.0      0 ns    0%      0 ns    0%
+                astra::hand::segmentation::get_circumference_    0.0      0 ns    0%      0 ns    0%
+            astra::hand::segmentation::test_natural_edges        0.0      0 ns    0%      0 ns    0%
+              astra::hand::segmentation::get_percent_natural_    0.0      0 ns    0%      0 ns    0%
+          astra::hand::segmentation::test_point_in_range         0.0      0 ns    0%      0 ns    0%
+          astra::hand::point_processor::start_probation          0.0      0 ns    0%      0 ns    0%
+      astra::hand::hand_tracker::generate_hand_frame             0.9    205 ns    0%     14 us    1%
+        astra::hand::hand_tracker::update_hand_frame             0.9    242 ns    0%    385 ns    0%
+          astra::hand::hand_tracker::reset_hand_point            9.0    143 ns    0%    143 ns    0%
+        end_write                                                0.9     13 us    1%     13 us    1%
+  astra::hand::hand_tracker::~hand_tracker                       0.1     85 ns    0%     85 ns    0%
+  astra::hand::point_processor::~point_processor                 0.1      0 ns    0%      0 ns    0%
+  astra::hand::depth_utility::~depth_utility                     0.1      0 ns    0%      0 ns    0%
+
