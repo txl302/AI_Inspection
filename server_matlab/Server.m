@@ -24,23 +24,7 @@ while 1
         
         case 10
             fprintf('Initializating...')
-            
-            %fwrite(u_edge, 11)
-            
-%             a = dir('D:\Midea_AI_Inspection\raw');
-%             n = length(a);
-%             
-%             source = strcat(strcat(a(n).folder, '\', a(n).name));
-%             destination = 'D:\Midea_AI_Inspection\standard';
-%             
-%             copyfile(source,destination)
-%             
-%             b = dir('D:\Midea_AI_Inspection\standard');
-%             n = length(b);
-%             
-%             source_standard_img = strcat(strcat(b(n).folder, '\', b(n).name));
-%             standard_img = imread(source_standard_img);
-            
+
             fwrite(u_mobile, 10)
             
             fprintf('done!\n')
@@ -54,7 +38,7 @@ while 1
                 r(:,i) = fread(u_mobile, 100, 'float')
                 
                 BW(:,:,i) = roipoly(standard_img, c(:,i), r(:,i));
- 
+                
             end
             
             fprintf('receiving done!')
@@ -93,10 +77,36 @@ while 1
             
             fprintf('uploading ok sample ...')
             
+            copyfile()
+            
+            
+            
         case 105
             
             fprintf('uploading ng sample...')
             
+            n = fread(u3, 10);
+            
+            copyfile()
+            
+        case 106
+            
+            fprintf('setting standard image...')
+            
+            a = dir('D:\Midea_AI_Inspection\raw');
+            n = length(a);
+            
+            source = strcat(strcat(a(n).folder, '\', a(n).name));
+            destination = 'D:\Midea_AI_Inspection\standard';
+            
+            copyfile(source,destination)
+            
+            b = dir('D:\Midea_AI_Inspection\standard');
+            n = length(b);
+            
+            source_standard_img = strcat(strcat(b(n).folder, '\', b(n).name));
+            standard_img = imread(source_standard_img);
+
         case 11
             
             fprintf('capturing...\n')
@@ -130,7 +140,7 @@ while 1
             %imshow(img);
             
             gray_detect = rgb2gray(img);
- 
+            
             DS = [];
             
             for i = 1:n_parts
@@ -155,19 +165,19 @@ while 1
             
         case 13
             fprintf('trainning\n')
-
+            
             options.vdiv = 1;
             options.hdiv = 1;
             options.semantic = 0;
             options.samples  = 8;
             options.mappingtype = 'u2';
-
+            
             for j = 1:n_parts
                 
                 X = [];
-
+                
                 eval(['i1','=','find','(','didb.sample',num2str(j),'.set<=2',')',';']);
-
+                
                 for i = 1:1:length(i1)
                     
                     eval(['im','=','didb.sample',num2str(j),'.data(:,:,i1(i))',';']);
@@ -215,7 +225,7 @@ while 1
             
             fprintf('making dataset\n')
             a = dir('D:\Midea_AI_Inspection\train\');
-
+            
             o_path = strcat('D:\Midea_AI_Inspection\train\', num2str(0), '\')
             
             o_dir = dir(o_path);
@@ -237,7 +247,7 @@ while 1
                     eval(['didb.sample',num2str(j),'.data(:,:,n_current)','=','gray_train_c',';']);
                     eval(['didb.sample',num2str(j),'.label','=','[didb.sample',num2str(j),'.label, 1]',';']);
                     eval(['didb.sample',num2str(j),'.set','=','[didb.sample',num2str(j),'.set, 1]',';']);
-
+                    
                 end
                 
                 n_path = strcat('D:\Midea_AI_Inspection\train\', num2str(j), '\')
@@ -271,7 +281,7 @@ while 1
             fwrite(u_mobile, 20)
             
             fprintf('disconnect\n')
-
+            
             fclose(u_edge)
             fclose(u_mobile)
             break

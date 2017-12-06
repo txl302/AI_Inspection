@@ -22,7 +22,7 @@ function varargout = GUI_mobile(varargin)
 
 % Edit the above text to modify the response to help GUI_mobile
 
-% Last Modified by GUIDE v2.5 01-Dec-2017 17:21:12
+% Last Modified by GUIDE v2.5 05-Dec-2017 13:30:19
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -133,24 +133,28 @@ end
 fclose(u3)
 
 
-% --- Executes on button press in upload_ok.
-function upload_ok_Callback(hObject, eventdata, handles)
-% hObject    handle to upload_ok (see GCBO)
+% --- Executes on button press in Bn_upload_ok.
+function Bn_upload_ok_Callback(hObject, eventdata, handles)
+% hObject    handle to Bn_upload_ok (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
 global u3
+
+fwrite(u3, 104)
 
 fprintf('uploading ok sample...')
 
 
-% --- Executes on button press in upload_ng.
-function upload_ng_Callback(hObject, eventdata, handles)
-% hObject    handle to upload_ng (see GCBO)
+% --- Executes on button press in Bn_upload_ng.
+function Bn_upload_ng_Callback(hObject, eventdata, handles)
+% hObject    handle to Bn_upload_ng (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
 
 global u3
+
+fwrite(u3, 105)
 
 fprintf('uploading ng sample...')
 
@@ -608,8 +612,20 @@ if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgr
 end
 
 
-% --- Executes on button press in pushbutton13.
-function pushbutton13_Callback(hObject, eventdata, handles)
-% hObject    handle to pushbutton13 (see GCBO)
+% --- Executes on button press in Bn_set_standard.
+function Bn_set_standard_Callback(hObject, eventdata, handles)
+% hObject    handle to Bn_set_standard (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+global u3
+
+fwrite(u3, 106)
+
+
+% --- Executes on button press in Bn_feature_setting.
+function Bn_feature_setting_Callback(hObject, eventdata, handles)
+% hObject    handle to Bn_feature_setting (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
