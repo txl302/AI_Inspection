@@ -59,7 +59,7 @@ handles.output = hObject;
 guidata(hObject, handles);
 
 global u3
-u3 = udp('127.0.0.1', 'RemotePort', 8013, 'LocalPort', 4013);
+u3 = udp('10.3.225.35', 'RemotePort', 8013, 'LocalPort', 4013);
 
 u3.timeout = 1000;
 
@@ -70,12 +70,12 @@ global part_n
 part_n = 0;
 
 axes(handles.axes2);
-imshow(imread('resource\logo.png'));
+imshow(imread('..\resource\logo.png'));
 axes(handles.axes3);
-imshow(imread('resource\ok.bmp'));
+imshow(imread('..\resource\ok.bmp'));
 
 axes(handles.axes1);
-imshow(imread('resource\black.bmp'));
+imshow(imread('..\resource\black.bmp'));
 
 % UIWAIT makes GUI_mobile wait for user response (see UIRESUME)
 % uiwait(handles.figure1);

@@ -2,12 +2,12 @@ clc
 clear all
 close all
 
-u_edge = udp('192.168.0.126', 4012, 'LocalPort', 8012);
-u_mobile = udp('127.0.0.1', 4013, 'LocalPort', 8013);
+import java.awt.Robot;
+import java.awt.event.*;
 
-u_edge.timeout = 1000;
-u_edge.OutputBufferSize=8192;
-u_edge.InputBufferSize=8192;
+robot = java.awt.Robot;
+
+u_mobile = udp('10.3.225.63', 4013, 'LocalPort', 8013);
 
 u_mobile.timeout = 1000;
 u_mobile.OutputBufferSize=8192;
@@ -15,6 +15,7 @@ u_mobile.InputBufferSize=8192;
 
 fopen(u_edge)
 fopen(u_mobile)
+
 
 while 1
     
@@ -24,7 +25,29 @@ while 1
         
         case 10
             fprintf('Initializating...')
-
+            
+            if ~exist('D:\Midea_AI_Inspection')
+                mkdir('D:\Midea_AI_Inspection');
+                mkdir('D:\Midea_AI_Inspection\train');
+                mkdir('D:\Midea_AI_Inspection\test');
+                mkdir('D:\Midea_AI_Inspection\raw');
+                mkdir('D:\Midea_AI_Inspection\standard')
+            else
+                if ~exist('D:\Midea_AI_Inspection\train')
+                    mkdir('D:\Midea_AI_Inspection\train');
+                end
+                if ~exist('D:\Midea_AI_Inspection\test')
+                    mkdir('D:\Midea_AI_Inspection\test');
+                end
+                if ~exist('D:\Midea_AI_Inspection\raw')
+                    mkdir('D:\Midea_AI_Inspection\raw');
+                end
+                if ~exist('D:\Midea_AI_Inspection\standard')
+                    mkdir('D:\Midea_AI_Inspection\standard');
+                end
+                
+            end
+            
             fwrite(u_mobile, 10)
             
             fprintf('done!\n')
@@ -40,6 +63,8 @@ while 1
                 BW(:,:,i) = roipoly(standard_img, c(:,i), r(:,i));
                 
             end
+            
+            %set the timeout time and continue progress
             
             fprintf('receiving done!')
             
@@ -75,9 +100,12 @@ while 1
             
         case 104
             
+            
             fprintf('uploading ok sample ...')
             
-            copyfile()
+            copyfile('22.txt', '2');
+            
+            fprint('')
             
             
             
@@ -86,6 +114,14 @@ while 1
             fprintf('uploading ng sample...')
             
             n = fread(u3, 10);
+            
+            dir
+            
+            nn = length();
+            
+            source = strcat();
+            
+            destination = strcat('D:\Midea_AI_Inspection\train\', str2num(n), '\');
             
             copyfile()
             
@@ -106,21 +142,19 @@ while 1
             
             source_standard_img = strcat(strcat(b(n).folder, '\', b(n).name));
             standard_img = imread(source_standard_img);
-
+            
         case 11
             
             fprintf('capturing...\n')
-            fwrite(u_edge, 11)
             
-            rec = fread(u_edge, 100)
+            source = 'D:\astra_TTT\AstraSDK-0.5.0-20160426T102744Z-vs2015-win64\samples\vs2015\bin\Debug\sc.png'
+            destination_dir = 'D:\Midea_AI_Inspection\raw\'
             
-            if  rec == 111
-                
-                getfile('192.168.0.126')
-                
-                fprintf('capturing...done!')
-                
-            end
+            
+            robot.keyPress    (java.awt.event.KeyEvent.VK_F1);
+            robot.keyRelease  (java.awt.event.KeyEvent.VK_F1);
+            
+            filename = strcat(date, '-',num2str(n_cap), '.png');
             
             c = dir
             

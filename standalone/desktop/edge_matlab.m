@@ -9,7 +9,7 @@ import java.awt.event.*;
 
 robot = java.awt.Robot;
 
-u2 = udp('192.168.0.147', 8012, 'LocalPort', 4012);
+u2 = udp('127.0.0.1', 8012, 'LocalPort', 4012);
 u2.timeout = 1000;
 
 fopen(u2)
@@ -38,9 +38,7 @@ while 1
         
         fwrite(u2, 111)
         
-        sendfile(filename, destination_dir)
-        
-        
+        %sendfile(filename, destination_dir)
         
     else if cmd == 20
             
