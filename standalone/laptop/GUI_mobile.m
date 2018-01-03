@@ -22,7 +22,7 @@ function varargout = GUI_mobile(varargin)
 
 % Edit the above text to modify the response to help GUI_mobile
 
-% Last Modified by GUIDE v2.5 05-Dec-2017 13:30:19
+% Last Modified by GUIDE v2.5 29-Dec-2017 15:24:31
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -59,7 +59,8 @@ handles.output = hObject;
 guidata(hObject, handles);
 
 global u3
-u3 = udp('10.3.225.35', 'RemotePort', 8013, 'LocalPort', 4013);
+%u3 = udp('192.168.0.147', 'RemotePort', 8013, 'LocalPort', 4013);
+u3 = udp('169.254.206.4', 'RemotePort', 8013, 'LocalPort', 4013);
 
 u3.timeout = 1000;
 
@@ -156,6 +157,10 @@ global u3
 
 fwrite(u3, 105)
 
+part_n = str2double(get(handles.edit7,'String'));
+
+fwrite(u3, part_n)
+
 fprintf('uploading ng sample...')
 
 
@@ -169,22 +174,38 @@ global u3
 
 global n_parts
 
+
+
 fwrite(u3, 12)
+
+fd_back = fread(u3, 100)
+
+if fd_back == 111
+    
+    pause(1);
+    
+    %getfile('192.168.0.147');
+    getfile('169.254.206.4');
+    
+    c = dir
+    
+    movefile(c(3).name, 'curr.jpg')
+    
+    axes(handles.axes1);
+    imshow(imread('curr.jpg'));
+    
+end
+
+
+
+
+%fwrite(u3, 12)
 
 fd_back = fread(u3, 10)
 
 DS = fread(u3, 10)
 
 result = sum(DS)
-
-current_img = dir('D:\Midea_AI_Inspection\raw\');
-
-n = length(current_img);
-
-img = imread(strcat(current_img(n).folder, '\', current_img(n).name));
-
-axes(handles.axes1);
-imshow(img);
 
 if fd_back == 12
     
@@ -447,11 +468,7 @@ global part_n
 
 fwrite(u3, 101)
 
-standard_img = dir('D:\Midea_AI_Inspection\standard\');
-
-n = length(standard_img);
-
-img = imread(strcat(standard_img(n).folder, '\', standard_img(n).name));
+img = imread('curr.jpg');
 
 for i = 1:n_parts
     
@@ -492,21 +509,19 @@ fd_back = fread(u3, 100)
 
 if fd_back == 111
     
-    pause(1)
+    pause(1);
     
-    a = dir('D:\Midea_AI_Inspection\raw');
-    n = length(a)
+    %getfile('192.168.0.147');
+    getfile('169.254.206.4');
+    
+    c = dir
+    
+    movefile(c(3).name, 'curr.jpg')
     
     axes(handles.axes1);
-    imshow(imread(strcat('D:\Midea_AI_Inspection\raw\', a(n).name)));
+    imshow(imread('curr.jpg'));
     
 end
-
-
-
-
-
-
 
 
 

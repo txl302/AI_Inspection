@@ -2,7 +2,7 @@ function sendfile(f, p)
 
 if f~=0  
 
-    oldpath=cd
+    oldpath=cd;
     
     eval(['cd ', '''',p, ''''])
     FileList=dir;
