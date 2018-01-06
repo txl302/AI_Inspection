@@ -22,7 +22,7 @@ function varargout = GUI_mobile(varargin)
 
 % Edit the above text to modify the response to help GUI_mobile
 
-% Last Modified by GUIDE v2.5 29-Dec-2017 15:24:31
+% Last Modified by GUIDE v2.5 04-Jan-2018 15:18:55
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -211,7 +211,7 @@ if fd_back == 12
     
     if sum(DS) == n_parts
         
-        set(handles.edit1,'string','The part is OK');
+        set(handles.edit1,'string','The part is OK', 'foregroundcolor', [0,0,0]);
         
         axes(handles.axes3);
         imshow(imread('resource\ok.bmp'));
@@ -220,7 +220,7 @@ if fd_back == 12
         
         n_missing = find(DS > 1);
         
-        set(handles.edit1,'string',strcat('Part', ' ', num2str(n_missing), ' missing!'));
+        set(handles.edit1,'string',strcat('Part', ' ', num2str(n_missing), ' missing!'), 'foregroundcolor', [1,0,0]);
         
         axes(handles.axes3);
         imshow(imread('resource\ng.bmp'));
@@ -518,8 +518,39 @@ if fd_back == 111
     
     movefile(c(3).name, 'curr.jpg')
     
+    
+    
+    %     tcp=tcpip('169.254.206.4',1314);
+    %     set(tcp,'InputBufferSize',6000000);
+    %     fopen(tcp);
+    %     while tcp.BytesAvailable==0
+    %         pause(0.1);
+%     end
+%     filename=fread(tcp,tcp.BytesAvailable/2,'uint16');
+%     filename=char(filename);
+%     filename=filename';
+%     fwrite(tcp,1314,'uint16');
+%     while tcp.BytesAvailable==0
+%         pause(0.1);
+%     end
+%     
+%     filesize=fread(tcp,1,'uint32')
+%     
+%     fwrite(tcp,1314,'uint16');
+%     while tcp.BytesAvailable~=filesize
+%         pause(0.5);
+%     end
+%     data=fread(tcp,filesize,'uint8')
+%     fwrite(tcp,1314,'uint16');
+%     
+% %     fid=fopen(filename,'w');
+% %     fwrite(fid,data,'uint8');
+% %     fclose(fid);
+%     fclose(tcp);
+    
     axes(handles.axes1);
     imshow(imread('curr.jpg'));
+%     imshow(data);
     
 end
 
@@ -644,3 +675,26 @@ function Bn_feature_setting_Callback(hObject, eventdata, handles)
 % hObject    handle to Bn_feature_setting (see GCBO)
 % eventdata  reserved - to be defined in a future version of MATLAB
 % handles    structure with handles and user data (see GUIDATA)
+
+
+% --- Executes on button press in Bn_save_model.
+function Bn_save_model_Callback(hObject, eventdata, handles)
+% hObject    handle to Bn_save_model (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+global u3
+
+fwrite(u3, 15)
+
+
+% --- Executes on button press in Bn_load_model.
+function Bn_load_model_Callback(hObject, eventdata, handles)
+% hObject    handle to Bn_load_model (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+global u3
+
+fwrite(u3, 16)
