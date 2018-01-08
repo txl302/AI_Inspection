@@ -16,6 +16,9 @@ u_mobile.InputBufferSize=8192;
 fopen(u_edge)
 fopen(u_mobile)
 
+current_image_c = '';
+current_image_d = '';
+
 try
     
     while 1
@@ -49,6 +52,8 @@ try
                     
                 end
                 
+                fwrite(u_edge, 10)
+
                 fwrite(u_mobile, 10)
                 
                 fprintf('done!\n')
@@ -101,17 +106,31 @@ try
                 
                 fprintf('uploading ok sample ...')
                 
-                copyfile()
+                d_train_OK_d = 'D:\Midea_AI_Inspection\train\Depth\0\';
+                d_train_OK_c = 'D:\Midea_AI_Inspection\train\Color\0\';
                 
+                d_raw = 'D:\Midea_AI_Inspection\raw\'
+                
+                copyfile(strcat(d_raw, filename_d), d_train_OK_d);
+                copyfile(strcat(d_raw, filename_c), d_train_OK_c);
+                
+                fprintf('uploading done!')
                 
                 
             case 105
                 
                 fprintf('uploading ng sample...')
                 
-                n = fread(u3, 10);
+                part_n = fread(u_mobile, 10);
                 
-                copyfile()
+                d_train_NG_d = 'D:\Midea_AI_Inspection\train\Depth\';
+                d_train_NG_c = 'D:\Midea_AI_Inspection\train\Color\';
+                d_raw = 'D:\Midea_AI_Inspection\raw\'
+                
+                copyfile(strcat(d_raw, filename_d), strcat(d_train_NG_d, num2str(part_n), '\'));
+                copyfile(strcat(d_raw, filename_c), strcat(d_train_NG_c, num2str(part_n), '\'));
+                
+                fprintf('uploading done!')
                 
             case 106
                 
@@ -146,7 +165,13 @@ try
                     
                 end
                 
-                c = dir
+                source = 'D:\astra_TTT\AstraSDK-0.5.0-20160426T102744Z-vs2015-win64\samples\vs2015\bin\Debug\sc.png';
+                destination_dir = 'D:\Midea_AI_Inspection\raw\'; 
+                
+                dt = fix(clock);
+                
+                org_name = strcat(num2str(dt(1)), num2str(dt(2)), num2str(dt(3)), num2str(dt(4)), num2str(dt(5)), num2str(dt(6)));
+                filename = strcat(org_name,  '.png');
                 
                 movefile(c(3).name, 'D:\Midea_AI_Inspection\raw')
                 
